@@ -23,7 +23,6 @@ def exercisesToDict():
     for line in file_list:
         temp_list = line.split(",")
         exercise, muscle = temp_list[0], temp_list[1]
-        muscle = muscle[1:] # Remove space at beginning
         if muscle in muscle_exercises:
             # If it exists add to already existing list
             muscle_exercises[muscle].append(exercise)
@@ -72,7 +71,7 @@ def handleReply(tupleIn):
         for food in foodList:
             returnString += "{}: {}kcal per 100g<br />".format(food[0], getCalories(food))
         setDepth(0)
-
+                        
     if date != False:
         returnString += storeDate(date[0][0],date[1][0])
 
@@ -107,18 +106,12 @@ def generateSecondaryReply(exerciseList):
        Add the inputs as items in the list "Workout"
        Set depth to 0; reseting the depth.
     """
-    returnString = ""
     global workout
     workout += exerciseList
     setDepth(0)
     if len(workout) > 2:
-        returnString += "Your work out is!: <br />"
-        for exercise in workout:
-            returnString += "{}<br />".format(exercise)
-        returnString += motivationQuote()
-
-    return returnString
-
+        return motivationQuote()
+    return "Thank you"
 
 ## Alex contributed
 def motivationQuote():
@@ -148,7 +141,7 @@ def search(foodName):
     return ndbno
 
 def calURL(ndbno):
-    """Takes in ndbno as a string and
+    """Takes in ndbno as a string and 
     returns a url for a JSON list"""
     return "https://api.nal.usda.gov/ndb/V2/reports?ndbno={}&type=f&format=json&api_key={}".format(ndbno, api_key)
 
@@ -161,9 +154,9 @@ def calList(ndbno):
     page.close()
     data_dict = json.loads(data_string)
     return data_dict
-
+    
 def getCalories(foodName):
-    """Takes in foodName as a string and
+    """Takes in foodName as a string and 
     returns the calorie value"""
     data_dict = calList(search(foodName))
     # In the format of: dict: ( list ( dict: ( dict: ( list: dict:value ) ) ) )
@@ -177,10 +170,10 @@ def storeDate(month,day): # Mariya & Antonio
             pass # If there is already a day in the dict it skips it.
         else:
             data_dict[month] = {str(day):0} #If not it adds it and adds hours as 0.
-
+            
     else:
         data_dict[month] = {str(day):0} # If not, it appends it as a key to the dict, the variable day as a key to the value of month and hours as a value of day where it is initialized as 0.
-
+        
     tempList.append(month) #Adds the month to the list to write it in the txt file.
     tempList.append(str(day)) #Adds the day to the lsit to write it in the txt file.
     setDepth(3)
@@ -191,7 +184,7 @@ def storeHours(hour):#Joao
     setDepth(0)
     tempList.clear() #clean the tempList created
     return("Thank you!")
-
+    
 #Joao
 def writeToFile():
     f=open('log.txt','w') # Opens the file,converts the list into a json string, writes on it and closes it
