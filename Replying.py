@@ -110,7 +110,7 @@ def generateSecondaryReply(exerciseList):
     global workout
     workout += exerciseList
     setDepth(0)
-    if len(workout) > 2
+    if len(workout) > 2:
         returnString += "Here is your workout list!:<br />"
         for exercise in workout:
             returnString += "{}<br />".format(exercise):
