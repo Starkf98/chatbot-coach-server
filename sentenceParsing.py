@@ -6,7 +6,7 @@ depth = 0
 
 conditioningList = ['treadmill','bike','cross trainer','rowing machine','skipping','eliptical','step machine']
 
-strengthList = ['core','back','shoulder','arm','tricep','bicep','glute','calve','calf','quadracep','quad','chest','deltoid','delt','ab','abdominal','lat','oblique','trap','trapezium']
+strengthList = ['core','back','shoulder','tricep','bicep','glute','calf','quad','chest','lat','trap','leg','forearm']
 
 greetingList = ['hi','hello','sup','hey','chao','bonjour','whad up']
 
@@ -26,15 +26,6 @@ for x in range(1,32):
     if x % 10 > 3:
         suffix = "th"
     dateList.append(str(x) + suffix)
-#~~~~~~~~~~# identification of greetings #~~~~~~~~~~#
-
-
-#def parseGreeting(msg):
-#    for greeting in greetingList:
-#        if greeting in msg:
-#            return True
-#        else:
-#            return False
 
 #~~~~~~~~~~# identification of input of exercises #~~~~~~~~~~#
 
@@ -52,7 +43,7 @@ def matchCategory(word):
             if word[0:-1]== x:
                 return "Strength"
 
-        if word[0:-1] == "calorie":
+        if word[0:-1] == "calories":
             return "calorie"
 
         for x in greetingList:
