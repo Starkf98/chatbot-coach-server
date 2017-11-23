@@ -19,16 +19,18 @@ monthList = ['january','feburary','march','april','may','june','july','august','
 dateList = []
 for x in range(1,32):
     suffix = ""
-    if x % 10 == "0":
+    if x % 10 == 0:
         suffix = "th"
-    if x % 10 == "1":
+    elif x % 10 == 1:
         suffix = "st"
-    if x % 10 == "2":
+    elif x % 10 == 2:
         suffix = "nd"
-    if x % 10 == "3":
+    elif x % 10 == 3:
         suffix = "rd"
-    if x % 10 > 3:
+    elif x % 10 > 3:
         suffix = "th"
+    else:
+        pass
     dateList.append(str(x) + suffix)
 
 #~~~~~~~~~~# identification of input of exercises #~~~~~~~~~~#
