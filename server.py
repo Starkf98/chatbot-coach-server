@@ -12,6 +12,13 @@ hostPort = 8000
 class MyServer(BaseHTTPRequestHandler):
     
     exercisesToDict()
+    depth = 0
+
+    def setDepth(depth):
+            MyServer.depth = depth
+        
+    def getDepth():
+            return MyServer.depth
 
     # Method is called when GET request is made
     def do_GET(self):
@@ -35,9 +42,11 @@ class MyServer(BaseHTTPRequestHandler):
         print ("Recieved: {} at {}".format(data, time.asctime()))
         # Take keywords from message recieved and
         # put them into a dict keyWords
-        identifyOutput(data["message"])
+        identifyOutput(data["message"],MyServer.getDepth())
         #print(exercise_Muscle)
-        data["message"] = handleReply(returnOutput())
+        data["message"], data["depth"] = handleReply(returnOutput(MyServer.getDepth()))
+        MyServer.setDepth(data["depth"])
+        print("Msg:{} \n depth:{}".format(data["message"],data["depth"]))
         #print(data["message"])
 
         # Format dictionary into acceptable JSON
