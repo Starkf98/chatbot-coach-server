@@ -4,7 +4,7 @@
 
 depth = 0
 
-#Defining of lists, strength & conditioning.
+#Defining of lists, strength & conditioning, greeting and months.
 
 conditioningList = ['treadmill','bike','cross trainer','rowing machine','skipping','eliptical','step machine']
 
@@ -13,6 +13,8 @@ strengthList = ['core','back','shoulder','tricep','bicep','glute','calf','quad',
 greetingList = ['hi','hello','sup','hey','chao','bonjour','whad up']
 
 monthList = ['january','feburary','march','april','may','june','july','august','september','october','november','december']
+
+#applies correct suffix to date
 
 dateList = []
 for x in range(1,32):
@@ -35,6 +37,8 @@ for x in range(1,32):
 
 keyWords = {}
 
+
+
 def matchCategory(word):
     """User string is input, string searched for specific words, outputs categories words associated with"""
 
@@ -55,8 +59,8 @@ def matchCategory(word):
                 return ("Greeting",word[0:-1])
 
     else:
-        for x in conditioningList:      #no plural then it is returned to either strength or conditioning
-            if word == x:
+        for x in conditioningList:      #no plural then it is returned to either strength, conditioning
+            if word == x:               # greeting, calorie, date or month.
                 return ("Cardio",word)
 
         for x in strengthList:
@@ -77,7 +81,7 @@ def matchCategory(word):
         for x in monthList:
             if word == x:
                 return ("Month",word)
-    return ("N/a",word)
+    return ("N/a",word)                   #Words that do not fit into any category are put into N/A (ignored)
 
 #angus
 
@@ -87,9 +91,9 @@ def identifyOutput(msg,depthIn):
     depth = depthIn
     if depth == 0:
         msgList = msg.lower().split()
-        for word in msgList:
+        for word in msgList:                                 #Depth is used to determine what type information is passed to the server
             if matchCategory(word) in keyWords:              #adds the muscle group/training machine to a list
-                addKeyWordsTuple(matchCategory(word))       # if it is in either strengthList or conditioningList
+                addKeyWordsTuple(matchCategory(word))        #if it is in either strengthList or conditioningList
             else:
                 setKeyWordsTuple(matchCategory(word))
     elif depth == 1:
@@ -112,6 +116,7 @@ def identifyOutput(msg,depthIn):
 #Angus,Chris
 
 def returnOutput(depth=0):
+    #Assume all variables are not included in the message
     greet = False
     primaryList = False
     secondaryList = False
@@ -119,8 +124,9 @@ def returnOutput(depth=0):
     hours = False
     foodList = False
     date = False
+    # Check if any variables are actually included
     if depth == 0:
-        if "Cardio" in keyWords:                             #Gives lists induvidually as output for transfer to Replying.py
+        if "Cardio" in keyWords:
             if primaryList == False:
                 primaryList = []
             primaryList += getCardioList()
@@ -160,7 +166,7 @@ def getStrengthList():
 def clearKeyWords():                   #resets list from previous entries
     keyWords.clear()
 
-def setKeyWords(key, value):
+def setKeyWords(key, value):              #sets keys and values for a dictionary
     keyWords[key] = [value]
 
 def setKeyWordsTuple(tuple):
@@ -175,12 +181,12 @@ def addKeyWordsTuple(tuple):
 
 def getKeyWord():
     return keyWords
-                                       #polymorphic function, can return all keyWords or specific based key
+
 def getKeyWord(key):
     return keyWords[key]
 
 def getHours():
-    return getKeyWord('Hour')[0]
+    return getKeyWord('Hour')[0]                    #Get's for returning categories
 
 def getFoodList():
     return getKeyWord('Food')
