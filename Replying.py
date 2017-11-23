@@ -113,7 +113,7 @@ def generateSecondaryReply(exerciseList):
     if len(workout) > 2:
         returnString += "Here is your workout list!:<br />"
         for exercise in workout:
-            returnString += "{}<br />".format(exercise):
+            returnString += "{}<br />".format(exercise)
         returnString += motivationQuote()
         return returnString
     return "Thank you"
