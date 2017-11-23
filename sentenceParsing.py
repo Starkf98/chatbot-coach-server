@@ -92,9 +92,9 @@ def identifyOutput(msg,depthIn):
         msgList = msg.lower().split()
         for word in msgList:
             if matchCategory(word) in keyWords:              #adds the muscle group/training machine to a list
-                addKeyWords(matchCategory(word))       # if it is in either strengthList or conditioningList
+                addKeyWordsTuple(matchCategory(word))       # if it is in either strengthList or conditioningList
             else:
-                setKeyWords(matchCategory(word))
+                setKeyWordsTuple(matchCategory(word))
     elif depth == 1:
         keyWords["Secondary"] = []
         msgList = msg.lower().split(",")
@@ -163,14 +163,14 @@ def clearKeyWords():                   #resets list from previous entries
 def setKeyWords(key, value):
     keyWords[key] = [value]
 
-def setKeyWords(tuple):
+def setKeyWordsTuple(tuple):
     keyWords[tuple[0]] = [tuple[1]]
 
                                        #assigns keys and values to words in defined lists and adds them to a dictionary
 def addKeyWords(key, value):
     keyWords[key].append(value)
 
-def addKeyWords(tuple):
+def addKeyWordsTuple(tuple):
     keyWords[tuple[0]].append(tuple[1])
 
 def getKeyWord():
