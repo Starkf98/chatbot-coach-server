@@ -1,5 +1,7 @@
 """Sentence Parsing code"""
 
+#Angus
+
 depth = 0
 
 #Defining of lists, strength & conditioning.
@@ -28,6 +30,8 @@ for x in range(1,32):
     dateList.append(str(x) + suffix)
 
 #~~~~~~~~~~# identification of input of exercises #~~~~~~~~~~#
+
+#Angus
 
 keyWords = {}
 
@@ -75,6 +79,8 @@ def matchCategory(word):
                 return ("Month",word)
     return ("N/a",word)
 
+#angus
+
 def identifyOutput(msg,depthIn):
     """input is string, output is dictionary of words associated with categories"""
     clearKeyWords()
@@ -103,6 +109,7 @@ def identifyOutput(msg,depthIn):
     print (keyWords)
     return keyWords
 
+#Angus,Chris
 
 def returnOutput(depth=0):
     greet = False
@@ -139,6 +146,8 @@ def returnOutput(depth=0):
         if "Hour" in keyWords:
             hours = getHours()
     return primaryList, greet, secondaryList, calorieCount, foodList, date, hours, depth
+
+#Angus,Chris,Alex
 
 #~~~~~functions for chris' side~~~~~#
 
