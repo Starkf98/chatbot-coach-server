@@ -53,7 +53,7 @@ def matchCategory(word):
                 return "Strength"
 
         if word[0:-1] == "calorie":
-            return "calorie"
+            return "Calorie"
 
         for x in greetingList:
             if word[0:-1] == x:
