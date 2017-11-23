@@ -37,43 +37,43 @@ def matchCategory(word):
     if word[-1] == "s":
         for x in conditioningList:      #removes plural 's' from input
             if word[0:-1]== x:
-                return "Cardio"
+                return ("Cardio",word[0:-1])
 
         for x in strengthList:
             if word[0:-1]== x:
-                return "Strength"
+                return ("Strength",word[0:-1])
 
-        if word[0:-1] == "calories":
-            return "calorie"
+        if word[0:-1] == "calorie":
+            return ("Calorie",word[0:-1])
 
         for x in greetingList:
             if word[0:-1] == x:
-                return "Greeting"
+                return ("Greeting",word[0:-1])
 
     else:
         for x in conditioningList:      #no plural then it is returned to either strength or conditioning
             if word == x:
-                return "Cardio"
+                return ("Cardio",word)
 
         for x in strengthList:
             if word == x:
-                return "Strength"
+                return ("Strength",word)
 
         if word == "calorie":
-            return "Calorie"
+            return ("Calorie",word)
 
         for x in greetingList:
             if word == x:
-                return "Greeting"
+                return ("Greeting",word)
 
         for x in dateList:
             if word == x:
-                return "Date"
+                return ("Date",word)
 
         for x in monthList:
             if word == x:
-                return "Month"
-    return "N/a"
+                return ("Month",word)
+    return ("N/a",word)
 
 def identifyOutput(msg,depthIn):
     """input is string, output is dictionary of words associated with categories"""
@@ -83,9 +83,9 @@ def identifyOutput(msg,depthIn):
         msgList = msg.lower().split()
         for word in msgList:
             if matchCategory(word) in keyWords:              #adds the muscle group/training machine to a list
-                addKeyWords(matchCategory(word), word)       # if it is in either strengthList or conditioningList
+                addKeyWordsTuple(matchCategory(word))       # if it is in either strengthList or conditioningList
             else:
-                setKeyWords(matchCategory(word), word)
+                setKeyWordsTuple(matchCategory(word))
     elif depth == 1:
         keyWords["Secondary"] = []
         msgList = msg.lower().split(",")
@@ -153,9 +153,16 @@ def clearKeyWords():                   #resets list from previous entries
 
 def setKeyWords(key, value):
     keyWords[key] = [value]
+
+def setKeyWordsTuple(tuple):
+    keyWords[tuple[0]] = [tuple[1]]
+
                                        #assigns keys and values to words in defined lists and adds them to a dictionary
 def addKeyWords(key, value):
     keyWords[key].append(value)
+
+def addKeyWordsTuple(tuple):
+    keyWords[tuple[0]].append(tuple[1])
 
 def getKeyWord():
     return keyWords
