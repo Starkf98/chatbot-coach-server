@@ -12,10 +12,6 @@ tempList=[] #Temporary lists where all the data will be saved in the txt file.
 
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=#
 
-def replyToGreeting():
-    return "Hello! I'm your personal trainer, Ciri."
-
-
 ## Alex contributed
 def exercisesToDict():
     """Reads in a file, returns dictionary
@@ -61,7 +57,7 @@ def handleReply(tupleIn):
     setDepth(depthIn)
     print("Primary\t{}\nGreet\t{}\nSec\t{}\ncalor\t{}\nFood\t{}\nDate\t{}\nHour\t{}\nDepth\t{}\n".format(primaryList, greet, secondaryList, calorieCount, foodList, date, hour, depthIn))
     if greet==True:
-        returnString += replyToGreeting() + "<br />"
+        returnString += "Hello I am your personal trainer, Ciri!"+ "<br />"
 
     if primaryList != False:
         returnString += generatePrimaryReply(primaryList) + "<br />"
@@ -111,7 +107,8 @@ def generateSecondaryReply(exerciseList):
        Add the inputs as items in the list "Workout"
        Set depth to 0; reseting the depth.
     """
-    workout.append(exerciseList)
+    global workout
+    workout += exerciseList
     setDepth(0)
     if len(workout) > 2:
         return motivationQuote()
