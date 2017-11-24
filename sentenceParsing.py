@@ -40,10 +40,18 @@ for x in range(1,32):
 keyWords = {}
 
 
+def removePunctuation(word):
+    tempWord = ""
+    for letter in word:
+        if letter in "abcdefghijklmnopqrstuvwxyz":
+            pass
+        else:
+            tempWord += letter
+    return tempWord
 
-def matchCategory(word):
+def matchCategory(wordIn):
     """User string is input, string searched for specific words, outputs categories words associated with"""
-
+    word = removePunctuation(wordIn)
     if word[-1] == "s":
         for x in conditioningList:      #removes plural 's' from input
             if word[0:-1]== x:
