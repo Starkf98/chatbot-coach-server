@@ -49,9 +49,8 @@ def removePunctuation(word):
             pass
     return tempWord
 
-def matchCategory(wordIn):
+def matchCategory(word):
     """User string is input, string searched for specific words, outputs categories words associated with"""
-    word = removePunctuation(wordIn)
     if word[-1] == "s":
         for x in conditioningList:      #removes plural 's' from input
             if word[0:-1]== x:
@@ -100,9 +99,11 @@ def identifyOutput(msg,depthIn):
     clearKeyWords()
     depth = depthIn
     if depth == 0:
-        msgList = msg.lower().split()
-        for word in msgList:                                 #Depth is used to determine what type information is passed to the server
-            if matchCategory(word) in keyWords:              #adds the muscle group/training machine to a list
+        msgList = msg.lower().split(" ")
+        for wordIn in msgList: 
+            word = removePunctuation(wordIn)
+            #Depth is used to determine what type information is passed to the server
+            if matchCategory(word)[0] in keyWords:              #adds the muscle group/training machine to a list
                 addKeyWordsTuple(matchCategory(word))        #if it is in either strengthList or conditioningList
             else:
                 setKeyWordsTuple(matchCategory(word))
