@@ -88,13 +88,12 @@ def generatePrimaryReply(muscleList):
     """Takes in a list of muscles that the user has inputed
     and returns a statement for an individual exercise or
     queries the user for an individual exercise"""
-    returnString = ""
+    returnString = "You could try these exercises!:<br />"
     for muscle in muscleList:
+        returnString += "<br />{}:<br />".format(muscle)
         reply = muscle
         replyLower = reply.lower()
         if replyLower in muscle_exercises.keys():
-            returnString = "You could try these exercises!:<br />"
-
             #Add the exercises and a break to the end of the message string
             for exercise in muscle_exercises[replyLower]:
                 returnString += exercise + "<br />"
