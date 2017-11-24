@@ -78,6 +78,9 @@ def handleReply(tupleIn):
     if hour != False:
         returnString += storeHours(hour)
 
+    if not (primaryList or greet or secondaryList or calorieCount or foodList or date or hour):
+        returnString += "Sorry you have not given me anything I understand or can work with."
+
     return returnString, getDepth()
 
 ## Chris and Alex contributed
