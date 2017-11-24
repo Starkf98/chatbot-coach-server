@@ -43,7 +43,7 @@ keyWords = {}
 def removePunctuation(word):
     tempWord = ""
     for letter in word:
-        if letter in "abcdefghijklmnopqrstuvwxyz":
+        if letter in "abcdefghijklmnopqrstuvwxyz1234567890":
             tempWord += letter
         else:
             pass
