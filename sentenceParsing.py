@@ -44,9 +44,9 @@ def removePunctuation(word):
     tempWord = ""
     for letter in word:
         if letter in "abcdefghijklmnopqrstuvwxyz":
-            pass
-        else:
             tempWord += letter
+        else:
+            pass
     return tempWord
 
 def matchCategory(wordIn):
