@@ -12,7 +12,7 @@ strengthList = ['core','back','shoulder','tricep','bicep','glute','calf','quad',
 
 greetingList = ['hi','hello','sup','hey','chao','bonjour','whad up']
 
-monthList = ['january','feburary','march','april','may','june','july','august','september','october','november','december']
+monthList = ['january','february','march','april','may','june','july','august','september','october','november','december']
 
 #applies correct suffix to date
 
